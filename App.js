@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Camera, CameraType } from 'expo-camera';
+import { AutoFocus, Camera, CameraType } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 import Button from './src/components/Button';
 
@@ -48,7 +48,8 @@ export default function App() {
   return ( 
     <View style={styles.container}>
       {!image ?
-      <Camera 
+      <Camera
+        ratio="16:9"
         style={styles.camera}
         type={type}
         flashMode={flash}
@@ -57,7 +58,7 @@ export default function App() {
           <View style={{
             flexDirection: 'row',
             justifyCOntent: 'space-between',
-            padding: 30,
+            padding: 30,  
           }}>
             <Button icon={'retweet'} onPress={() => {
               setType(type === CameraType.back ? CameraType.front : CameraType.back)
@@ -80,7 +81,7 @@ export default function App() {
           <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            paddingHorizontal: 50
+            paddingHorizontal: 30
           }}>
             <Button title={'Re-take'} icon='retweet' onPress={() => setImage(null)} />
             <Button title={'Save'} icon='check' onPress={saveImage} />
@@ -95,13 +96,13 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
     justifyContent: 'center',
     paddingBottom: 10,
     color: 'white',
   },
   camera: {
-    flex: 1,
+    flex: 1
   }
 });
